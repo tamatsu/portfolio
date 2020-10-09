@@ -6,5 +6,19 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: "http://localhost:1337",
+        contentTypes: [
+          "works",
+        ],
+        queryLimit: 1000,
+      },
+    },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+  ],
 }
+
