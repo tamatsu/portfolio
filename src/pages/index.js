@@ -1,6 +1,7 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import { Helmet } from "react-helmet"
 
 const query = graphql`
 {
@@ -26,6 +27,14 @@ const query = graphql`
 export default function Home() {
   return (
     <div>
+      <Helmet
+        meta={[
+          { name: 'charSet', content: 'utf-8' },
+        ]}>
+        <title>Portfolio</title>
+        <link rel="canonical" href="https://portfolio.acrux.jp/" />
+        <html lang="ja" />
+      </Helmet>
       <h1>Portfolio</h1>
       <StaticQuery
         query={query}
