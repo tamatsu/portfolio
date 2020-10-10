@@ -26,7 +26,7 @@ const query = graphql`
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Helmet
         meta={[
           { name: 'charSet', content: 'utf-8' },
@@ -35,37 +35,32 @@ export default function Home() {
         <link rel="canonical" href="https://portfolio.acrux.jp/" />
         <html lang="ja" />
       </Helmet>
-      <h1>Portfolio</h1>
-      <StaticQuery
-        query={query}
-        render={data => (
-          <div style={{
-            'max-width': '480px'
-          }}>
-            {data.allStrapiWorks.edges.map(work => (
-              <div
-                key={work.node.strapiId}
-                style={{
-                  display: 'flex',
-                  'flex-direction': 'column',
-                  padding: '1em',
-                  'box-shadow': '3px 3px 3px 3px hsla(0, 0%, 0%, 0.2)'
-                }}
-              >
-                <div>
-                  {work.node.name}
+      <div className="m-2 max-w-screen-sm">
+        <h1 className="font-bold text-3xl text-gray-800">Portfolio</h1>
+        <StaticQuery
+          query={query}
+          render={data => (
+            <div className="mt-2">
+              {data.allStrapiWorks.edges.map(work => (
+                <div
+                  key={work.node.strapiId}
+                  className="p-2 rounded-lg border shadow-lg"
+                >
+                  <div className="text-xl text-gray-800">
+                    {work.node.name}
+                  </div>
+                  <div className="mt-2 text-gray-700">
+                    {work.node.description}
+                  </div>
+                  <Img
+                    fixed={work.node.image.childImageSharp.fixed}
+                  />
                 </div>
-                <div>
-                  {work.node.description}
-                </div>
-                <Img
-                  fixed={work.node.image.childImageSharp.fixed}
-                />
-              </div>
-            ))}
-          </div>
-        )}
-      />
+              ))}
+            </div>
+          )}
+        />
+      </div>
     </div>
   )
 }
