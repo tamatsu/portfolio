@@ -11,6 +11,7 @@ const query = graphql`
         strapiId
         name
         description
+        siteurl
         image {
           childImageSharp {
             fixed(width: 200, height: 125) {
@@ -44,17 +45,25 @@ export default function Home() {
               {data.allStrapiWorks.edges.map(work => (
                 <div
                   key={work.node.strapiId}
-                  className="p-2 rounded-lg border shadow-lg"
                 >
-                  <div className="text-xl text-gray-800">
-                    {work.node.name}
-                  </div>
-                  <div className="mt-2 text-gray-700">
-                    {work.node.description}
-                  </div>
-                  <Img
-                    fixed={work.node.image.childImageSharp.fixed}
-                  />
+                  <a
+                    href={work.node.siteurl}
+                    target={work.node.strapiId}
+                    >
+                    <div
+                      className="p-2 rounded-lg border shadow-lg"
+                    >
+                      <div className="text-xl text-gray-800">
+                        {work.node.name}
+                      </div>
+                      <div className="mt-2 text-gray-700">
+                        {work.node.description}
+                      </div>
+                      <Img
+                        fixed={work.node.image.childImageSharp.fixed}
+                      />
+                    </div>
+                  </a>
                 </div>
               ))}
             </div>
