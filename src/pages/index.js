@@ -14,8 +14,8 @@ const query = graphql`
         siteurl
         image {
           childImageSharp {
-            fixed(width: 200, height: 125) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 700) {
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
@@ -27,7 +27,7 @@ const query = graphql`
 
 export default function Home() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-200">
       <Helmet
         meta={[
           { name: 'charSet', content: 'utf-8' },
@@ -45,25 +45,31 @@ export default function Home() {
               {data.allStrapiWorks.edges.map(work => (
                 <div
                   key={work.node.strapiId}
+                  className="mt-6"
                 >
                   <a
                     href={work.node.siteurl}
                     target={work.node.strapiId}
                     >
+ 
                     <div
-                      className="p-6 rounded-lg border shadow-lg"
+                      className="rounded-lg border shadow-lg overflow-hidden bg-gray-100"
                     >
-                      <div className="text-2xl text-gray-800">
-                        {work.node.name}
-                      </div>
-                      <div className="mt-4 text-gray-700">
-                        {work.node.description}
-                      </div>
                       <Img
-                        fixed={work.node.image.childImageSharp.fixed}
+                        fluid={work.node.image.childImageSharp.fluid}
+                        className="h-32 p-1 border-b-2"
                       />
-                      <div class="mt-4 font-bold text-lg text-gray-700">
-                        コードを見る
+                      <div className="p-6">
+                        <div className="text-2xl text-gray-800">
+                          {work.node.name}
+                        </div>
+                        <div className="mt-4 text-gray-700">
+                          {work.node.description}
+                        </div>
+
+                        <div class="mt-4 font-bold text-lg text-gray-700">
+                          コードを見る
+                        </div>
                       </div>
                     </div>
                   </a>
