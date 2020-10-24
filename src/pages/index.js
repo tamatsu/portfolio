@@ -36,16 +36,16 @@ export default function Home() {
         <link rel="canonical" href="https://portfolio.acrux.jp/" />
         <html lang="ja" />
       </Helmet>
-      <div className="m-2 max-w-screen-sm">
+      <div className="m-2">
         <h1 className="font-bold text-3xl text-gray-800">Portfolio</h1>
         <StaticQuery
           query={query}
           render={data => (
-            <div className="mt-4">
+            <div className="mt-4 md:mx-4 flex flex-wrap">
               {data.allStrapiWorks.edges.map(work => (
                 <div
                   key={work.node.strapiId}
-                  className="mt-6"
+                  className="mt-6 md:w-1/2"
                 >
                   <a
                     href={work.node.siteurl}
@@ -53,7 +53,7 @@ export default function Home() {
                     >
  
                     <div
-                      className="rounded-lg border shadow-lg overflow-hidden bg-gray-100"
+                      className="md:mx-2 rounded-lg border shadow-lg overflow-hidden bg-gray-100"
                     >
                       <Img
                         fluid={work.node.image.childImageSharp.fluid}
