@@ -27,7 +27,7 @@ const query = graphql`
 
 export default function Home() {
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 pb-64">
       <Helmet
         meta={[
           { name: 'charSet', content: 'utf-8' },
@@ -36,16 +36,16 @@ export default function Home() {
         <link rel="canonical" href="https://portfolio.acrux.jp/" />
         <html lang="ja" />
       </Helmet>
-      <div className="m-2">
+      <div className="mx-2">
         <h1 className="font-bold text-3xl text-gray-800">Portfolio</h1>
         <StaticQuery
           query={query}
           render={data => (
-            <div className="mt-4 md:mx-4 flex flex-wrap">
+            <div className="mt-4 md:mx-2 flex flex-wrap">
               {data.allStrapiWorks.edges.map(work => (
                 <div
                   key={work.node.strapiId}
-                  className="mt-6 md:w-1/2"
+                  className="mt-6 w-full md:w-1/2 lg:w-1/3"
                 >
                   <a
                     href={work.node.siteurl}
