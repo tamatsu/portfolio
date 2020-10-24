@@ -41,7 +41,7 @@ export default function Home() {
         <StaticQuery
           query={query}
           render={data => (
-            <div className="mt-2">
+            <div className="mt-4">
               {data.allStrapiWorks.edges.map(work => (
                 <div
                   key={work.node.strapiId}
@@ -51,17 +51,20 @@ export default function Home() {
                     target={work.node.strapiId}
                     >
                     <div
-                      className="p-2 rounded-lg border shadow-lg"
+                      className="p-6 rounded-lg border shadow-lg"
                     >
-                      <div className="text-xl text-gray-800">
+                      <div className="text-2xl text-gray-800">
                         {work.node.name}
                       </div>
-                      <div className="mt-2 text-gray-700">
+                      <div className="mt-4 text-gray-700">
                         {work.node.description}
                       </div>
                       <Img
                         fixed={work.node.image.childImageSharp.fixed}
                       />
+                      <div class="mt-4 font-bold text-lg text-gray-700">
+                        コードを見る
+                      </div>
                     </div>
                   </a>
                 </div>
