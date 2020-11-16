@@ -8,6 +8,7 @@ const query = graphql`
   allStrapiWorks {
     edges {
       node {
+        published_at
         strapiId
         name
         description
@@ -24,6 +25,15 @@ const query = graphql`
   }
 }
 `
+
+function log(v) {
+  console.log(v)
+  return v
+}
+
+function sortNode(a, b) {
+  return Date.parse(b.node.published_at) - Date.parse(a.node.published_at)
+}
 
 export default function Home() {
   return (
@@ -42,7 +52,9 @@ export default function Home() {
           query={query}
           render={data => (
             <div className="mt-4 md:mx-2 flex flex-wrap">
-              {data.allStrapiWorks.edges.map(work => (
+              {data.allStrapiWorks.edges
+              .sort(sortNode)
+              .map(work => (
                 <div
                   key={work.node.strapiId}
                   className="mt-6 w-full md:w-1/2 lg:w-1/3"
