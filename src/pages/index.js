@@ -55,10 +55,12 @@ export default function Home() {
                     <div
                       className="md:mx-2 rounded-lg border shadow-lg overflow-hidden bg-gray-100"
                     >
+                {work.node.image &&
                       <Img
                         fluid={work.node.image.childImageSharp.fluid}
                         className="h-32 p-1 border-b-2"
                       />
+                }
                       <div className="p-6">
                         <div className="text-2xl text-gray-800">
                           {work.node.name}
