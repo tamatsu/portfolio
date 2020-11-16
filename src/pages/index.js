@@ -8,6 +8,7 @@ const query = graphql`
   allStrapiWorks {
     edges {
       node {
+        createdAt
         strapiId
         name
         description
@@ -42,7 +43,11 @@ export default function Home() {
           query={query}
           render={data => (
             <div className="mt-4 md:mx-2 flex flex-wrap">
-              {data.allStrapiWorks.edges.map(work => (
+              {data.allStrapiWorks.edges
+              .sort((a, b) => {
+                return Date.parse(b.node.createdAt) - Date.parse(a.node.createdAt)
+              })
+              .map(work => (
                 <div
                   key={work.node.strapiId}
                   className="mt-6 w-full md:w-1/2 lg:w-1/3"
