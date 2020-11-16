@@ -26,6 +26,11 @@ const query = graphql`
 }
 `
 
+function log(v) {
+  console.log(v)
+  return v
+}
+
 export default function Home() {
   return (
     <div className="bg-gray-200 pb-64">
